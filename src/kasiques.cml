@@ -1,0 +1,38 @@
+// Definición de Contexto Principal para el Sistema de Ecommerce
+ContextMap KasiquesMap {
+    contains GestionAbastecimientoContext
+    contains GestionVentasContext
+    contains GestionComprasContext
+    contains ServicioClienteContext
+    contains GestionPoliticasContext
+
+    /* Open-Host service */
+    GestionAbastecimientoContext [SK]<->[SK] ServicioClienteContext
+
+    /* Cooperación */
+    GestionAbastecimientoContext [P]<->[P] GestionComprasContext
+    GestionAbastecimientoContext [P]<->[P] GestionVentasContext
+
+    /* Conformista */
+    GestionPoliticasContext [U]->[D,CF] GestionVentasContext
+    GestionPoliticasContext [U]->[D,CF] GestionComprasContext
+    GestionPoliticasContext [U]->[D,CF] ServicioClienteContext
+
+    /* Open-Host service */
+    GestionVentasContext [U,OHS]->[D] ServicioClienteContext
+}
+
+BoundedContext GestionAbastecimientoContext {
+}
+
+BoundedContext GestionVentasContext {
+}
+
+BoundedContext GestionComprasContext {
+}
+
+BoundedContext ServicioClienteContext {
+}
+
+BoundedContext GestionPoliticasContext {
+}
